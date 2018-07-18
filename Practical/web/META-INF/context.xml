@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context path="/Practical">
-    <Resource auth="Container" 
-              driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
-              name="Connection" password="123456" 
-              type="javax.sql.DataSource" 
-              url="jdbc:sqlserver://localhost:1433;databaseName=PracticalTest" 
-              username="sa"/>
-</Context>

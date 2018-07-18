@@ -1,0 +1,45 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="">
+            <result>Login.html</result>
+        </action>
+        <action name="try">
+            <result>Login.html</result>
+        </action>
+        <action name="login" class="sample.struts2.login.LoginAction">
+            <result name="success">Search.jsp</result>
+            <result name="fail" type="redirect">invalid.html</result>
+        </action>
+        <action name="SearchLastName" class="sample.struts2.Search.SearchLastNameAction">
+            <result>Search.jsp</result>
+        </action>
+        <action name="DeleteAccount" class="sample.struts2.delete.DeleteAccountAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">SearchLastName</param>
+                <param name="SearchValue">%{LastSearchValue}</param>
+            </result>
+            <result name="fail" type="redirect">errorPage.html</result>
+        </action>
+        <action name="UpdateAccount" class="sample.struts2.update.UpdateAccountAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">SearchLastName</param>
+                <param name="SearchValue">%{LastSearchValue}</param>
+            </result>
+            <result name="fail" type="redirect">errorPage.html</result>
+        </action>
+        <action name="CreateAccount" class="sample.struts2.createAccount.CreateAccountAction">
+            <exception-mapping exception="java.sql.SQLExeception" result="input"/>
+            <interceptor-ref name="params"/>
+            <interceptor-ref name="validation"/>
+            <interceptor-ref name="workflow"/>
+            <result name="input">CreateNewAccount.jsp</result>
+            <result name="success">login.html</result>
+            <result name="fail">CreateNewAccount.jsp</result>
+        </action>
+    </package>
+</struts>
